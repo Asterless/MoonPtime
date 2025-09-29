@@ -29,9 +29,6 @@ Ptime is a time library that deals with **time points** and **time spans** rathe
 ### Basic Usage
 
 ```moonbit
-// Import the library
-import @username/MoonPtime/src as @ptime
-
 // Create time points
 let epoch = @ptime.Ptime::epoch()
 let now = @ptime.Ptime::of_float(1640995200.0) // 2022-01-01 00:00:00 UTC
