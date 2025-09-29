@@ -1,0 +1,66 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "username/MoonPtime"
+
+// Values
+fn example_basic_time() -> Unit
+
+fn example_precision() -> Unit
+
+fn example_span_properties() -> Unit
+
+fn example_time_arithmetic() -> Unit
+
+fn example_time_comparison() -> Unit
+
+fn example_time_spans() -> Unit
+
+fn run_all_examples() -> Unit
+
+// Errors
+
+// Types and methods
+pub struct Ptime {
+  seconds : Int64
+  picoseconds : Int64
+}
+fn Ptime::add_span(Self, Span) -> Self
+fn Ptime::compare(Self, Self) -> Int
+fn Ptime::diff(Self, Self) -> Span
+fn Ptime::epoch() -> Self
+fn Ptime::of_float(Double) -> Self?
+fn Ptime::of_seconds(Int64) -> Self
+fn Ptime::of_ymd_hms(Int, Int, Int, Int, Int, Int) -> Self?
+fn Ptime::picoseconds(Self) -> Int64
+fn Ptime::seconds(Self) -> Int64
+fn Ptime::sub_span(Self, Span) -> Self
+fn Ptime::to_float(Self) -> Double
+fn Ptime::to_rfc3339(Self) -> String
+impl Eq for Ptime
+impl Show for Ptime
+
+pub struct Span {
+  seconds : Int64
+  picoseconds : Int64
+}
+fn Span::add(Self, Self) -> Self
+fn Span::compare(Self, Self) -> Int
+fn Span::is_negative(Self) -> Bool
+fn Span::is_positive(Self) -> Bool
+fn Span::is_zero(Self) -> Bool
+fn Span::mul(Self, Int64) -> Self
+fn Span::neg(Self) -> Self
+fn Span::of_float(Double) -> Self?
+fn Span::of_ms(Int64) -> Self
+fn Span::of_seconds(Int64) -> Self
+fn Span::picoseconds(Self) -> Int64
+fn Span::seconds(Self) -> Int64
+fn Span::sub(Self, Self) -> Self
+fn Span::to_float(Self) -> Double
+fn Span::zero() -> Self
+impl Eq for Span
+impl Show for Span
+
+// Type aliases
+
+// Traits
+
