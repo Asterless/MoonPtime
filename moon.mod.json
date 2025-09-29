@@ -2,8 +2,17 @@
   "name": "Asterless/MoonPtime",
   "version": "0.1.0",
   "readme": "README.mbt.md",
-  "repository": "",
+  "repository": "https://github.com/Asterless/MoonPtime",
   "license": "Apache-2.0",
-  "keywords": [],
-  "description": ""
+  "keywords": [
+    "time",
+    "datetime",
+    "ptime",
+    "posix",
+    "rfc3339",
+    "timestamp",
+    "duration",
+    "span"
+  ],
+  "description": "A POSIX time library for MoonBit with picosecond precision, inspired by OCaml's ptime library. Provides immutable time representation, RFC 3339 formatting, and comprehensive time arithmetic operations."
 }
