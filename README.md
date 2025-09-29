@@ -26,6 +26,12 @@ Ptime is a time library that deals with **time points** and **time spans** rathe
 
 ## Usage
 
+### Install
+
+```bash
+moon add Asterless/MoonPtime
+```
+
 ### Basic Usage
 
 ```moonbit
