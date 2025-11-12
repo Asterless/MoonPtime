@@ -1,4 +1,4 @@
-# MoonPtime - POSIX Time Library for MoonBit
+# MoonPtime - POSIX Time Library for MoonBit | [中文](README_zh.md)
 
 A lightweight, high-precision time handling library for MoonBit, focused on POSIX timestamps and time spans with picosecond accuracy.
 
@@ -153,14 +153,22 @@ The implementation is optimized for:
 
 ```text
 MoonPtime/
-├── src/                    # Source code
-│   ├── MoonPtime.mbt      # Core library implementation
-│   ├── MoonPtime_test.mbt # Comprehensive test suite
-│   ├── example.mbt        # Usage examples
-│   └── moon.pkg.json      # Package configuration
-├── cmd/main/              # Demo application
-├── moon.mod.json          # Module configuration
-└── README.md              # This file
+├── src/                        # Source files
+│   ├── moon.pkg.json           # package manifest for this MoonBit package
+│   ├── pkg.generated.mbti      # generated package interface (auto)
+│   ├── ptime.mbt               # core implementation (combined)
+│   ├── ptime_test.mbt          # test suite
+│   ├── span.mbt                # span implementation
+│   ├── span_test.mbt           # span tests
+│   ├── types.mbt               # types and shared definitions
+│   └── utils.mbt               # utility helpers
+├── target/                     # build artifacts produced by `moon`
+├── README.md                   # English README (this file)
+├── README_zh.md                # Chinese README
+├── moon.mod.json               # module metadata
+└── LICENSE                     # license file
+
+Note: This repository currently uses combined `.mbt` source files (e.g. `ptime.mbt`, `span.mbt`). Some forks or older commits split the implementation into more granular `.mbt` files.
 ```
 
 ## License
