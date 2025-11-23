@@ -13,7 +13,7 @@ test "ptime_from_float" {
       inspect(ptime.get_seconds(), content="1640995200")
       inspect(ptime.get_picoseconds(), content="0")
     }
-    None => abort("Invalid time")
+    None => fail("Invalid time")
   }
 }
 
@@ -48,13 +48,13 @@ test "ptime_ymd_hms" {
         t.unwrap().to_string(),
         content="{seconds: 1641038400, picoseconds: 0}",
       )
-    None => abort("Invalid date")
+    None => fail("Invalid date")
   }
 
   // Test invalid date
   let invalid = Ptime::of_ymd_hms(2022, 2, 30, 12, 0, 0) // February doesn't have 30 days
   match invalid {
-    Some(_) => abort("Should be invalid")
+    Some(_) => fail("Should be invalid")
     None => assert_true(invalid is None)
   }
 }

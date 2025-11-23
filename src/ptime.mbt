@@ -157,22 +157,6 @@ pub fn Ptime::diff(self : Ptime, other : Ptime) -> Span {
 }
 
 ///|
-pub impl Compare for Ptime with compare(self : Ptime, other : Ptime) -> Int {
-  if self.seconds < other.seconds {
-    -1
-  } else if self.seconds > other.seconds {
-    1
-    // Seconds equal, compare picoseconds
-  } else if self.picoseconds < other.picoseconds {
-    -1
-  } else if self.picoseconds > other.picoseconds {
-    1
-  } else {
-    0
-  }
-}
-
-///|
 pub impl Compare for Ptime with op_gt(self : Ptime, other : Ptime) -> Bool {
   self.compare(other) > 0
 }
