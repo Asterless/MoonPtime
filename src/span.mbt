@@ -83,35 +83,16 @@ pub fn Span::of_ms(ms : Int64) -> Span {
 /// 
 /// Returns a normalized `Span` with picoseconds adjusted to be within the valid range.
 fn Span::normalize(self : Span) -> Span {
-  if self.seconds >= 0L && self.picoseconds >= 0L {
-    // Both positive, normalize carry
-    if self.picoseconds >= PS_PER_S {
-      let extra_seconds = self.picoseconds / PS_PER_S
-      {
-        seconds: self.seconds + extra_seconds,
-        picoseconds: self.picoseconds % PS_PER_S,
-      }
-    } else {
-      self
-    }
-  } else if self.seconds < 0L && self.picoseconds <= 0L {
-    // Both negative, normalize borrow
-    if self.picoseconds <= -PS_PER_S {
-      let borrow_seconds = (-self.picoseconds + PS_PER_S - 1L) / PS_PER_S
-      {
-        seconds: self.seconds - borrow_seconds,
-        picoseconds: self.picoseconds + borrow_seconds * PS_PER_S,
-      }
-    } else {
-      self
-    }
-    // Different signs, need adjustment
-  } else if self.seconds < 0L && self.picoseconds > 0L {
-    { seconds: self.seconds + 1L, picoseconds: self.picoseconds - PS_PER_S }
-  } else if self.seconds > 0L && self.picoseconds < 0L {
-    { seconds: self.seconds - 1L, picoseconds: self.picoseconds + PS_PER_S }
+  let extra = self.picoseconds / PS_PER_S
+  let rem = self.picoseconds % PS_PER_S
+  let s = self.seconds + extra
+  let ps = rem
+  if s > 0L && ps < 0L {
+    { seconds: s - 1L, picoseconds: ps + PS_PER_S }
+  } else if s < 0L && ps > 0L {
+    { seconds: s + 1L, picoseconds: ps - PS_PER_S }
   } else {
-    self
+    { seconds: s, picoseconds: ps }
   }
 }
 
@@ -252,39 +233,6 @@ pub fn Span::scalar(self : Span, n : Int64) -> Span {
     picoseconds: self.picoseconds * n,
   }
   Span::normalize(span)
-}
-
-///|
-/// Compares two time spans.
-/// 
-/// Parameters:
-/// 
-/// * `self` : The first `Span` instance.
-/// * `other` : The second `Span` instance.
-/// 
-/// Returns an `Int` indicating the comparison result (-1 if less, 1 if greater, 0 if equal).
-/// 
-/// Example:
-///
-/// ```moonbit
-/// let span1 = Span::of_seconds(60L)
-/// let span2 = Span::of_seconds(30L)
-/// let result = span1.compare(span2)
-/// inspect(result, content="1")
-/// ```
-pub impl Compare for Span with compare(self : Span, other : Span) -> Int {
-  if self.seconds < other.seconds {
-    -1
-  } else if self.seconds > other.seconds {
-    1
-    // Seconds equal, compare picoseconds
-  } else if self.picoseconds < other.picoseconds {
-    -1
-  } else if self.picoseconds > other.picoseconds {
-    1
-  } else {
-    0
-  }
 }
 
 ///|

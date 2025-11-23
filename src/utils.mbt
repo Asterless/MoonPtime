@@ -20,48 +20,40 @@ fn days_in_month(year : Int, month : Int) -> Int {
 ///|
 /// Calculates the number of days from POSIX epoch to the specified date
 fn days_since_epoch(year : Int, month : Int, day : Int) -> Int64 {
-  let epoch_year = 1970
+  let y = year.to_int64()
+  let d = day.to_int64()
 
-  // Calculate year difference
-  let mut total_days = 0L
-  if year >= epoch_year {
-    // Forward calculation
-    for y = epoch_year; y < year; y = y + 1 {
-      let days_in_year = if is_leap_year(y) { 366L } else { 365L }
-      total_days = total_days + days_in_year
-    } else {
-      ()
-    }
-  } else {
-    // Backward calculation
-    for y = epoch_year - 1; y >= year; y = y - 1 {
-      let days_in_year = if is_leap_year(y) { 366L } else { 365L }
-      total_days = total_days - days_in_year
-    } else {
-      ()
-    }
-  }
+  // Calculate days from years (optimized)
+  // Days in previous years = 365 * (y-1) + leaps
+  let count_leaps = fn(yr : Int64) -> Int64 { yr / 4L - yr / 100L + yr / 400L }
+  let days_from_years = (y - 1970L) * 365L +
+    (count_leaps(y - 1L) - count_leaps(1969L))
 
   // Calculate month difference
-  for m = 1; m < month; m = m + 1 {
-    total_days = total_days + days_in_month(year, m).to_int64()
-  } else {
-    ()
+  let mut days_from_months = 0L
+  for i = 1; i < month; i = i + 1 {
+    days_from_months = days_from_months + days_in_month(year, i).to_int64()
   }
 
   // Add days (subtract 1 because day starts from 1)
-  total_days + (day - 1).to_int64()
+  days_from_years + days_from_months + (d - 1L)
 }
 
 ///|
-/// Converts days to year, month, day - simplified implementation
+/// Converts days to year, month, day using efficient civil time algorithm
 fn days_to_ymd(days : Int64) -> (Int, Int, Int) {
-  // Simplified implementation, returns a basic date
-  // A more complex algorithm is needed to correctly calculate year, month, day
-  let epoch_year = 1970
-  let days_per_year = 365L
-  let estimated_year = epoch_year + (days / days_per_year).to_int()
-  (estimated_year, 1, 1) // Temporary implementation
+  // Shift to 0000-03-01 epoch (719468 days before 1970-01-01)
+  let z = days + 719468L
+  let era = if z >= 0L { z / 146097L } else { (z - 146096L) / 146097L }
+  let doe = z - era * 146097L
+  let yoe = (doe - doe / 1460L + doe / 36524L - doe / 146096L) / 365L
+  let y = yoe + era * 400L
+  let doy = doe - (365L * yoe + yoe / 4L - yoe / 100L)
+  let mp = (5L * doy + 2L) / 153L
+  let d = doy - (153L * mp + 2L) / 5L + 1L
+  let m = if mp < 10L { mp + 3L } else { mp - 9L }
+  let year = if m <= 2L { y + 1L } else { y }
+  (year.to_int(), m.to_int(), d.to_int())
 }
 
 ///| RFC 3339 Support - Simplified Implementation

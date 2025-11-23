@@ -8,7 +8,7 @@ pub struct Ptime {
   seconds : Int64
   /// Picoseconds component, range [0, 999_999_999_999]
   picoseconds : Int64
-} derive(Eq, Show)
+} derive(Eq, Show, Compare)
 
 ///|
 /// Time span representing the duration between two time points.
@@ -18,7 +18,7 @@ pub struct Span {
   seconds : Int64
   /// Picoseconds component, range [-999_999_999_999, 999_999_999_999]
   picoseconds : Int64
-} derive(Eq, Show)
+} derive(Eq, Show, Compare)
 
 ///|
 /// Number of picoseconds per second
