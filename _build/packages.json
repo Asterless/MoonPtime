@@ -1,0 +1,195 @@
+{
+  "source_dir": "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime",
+  "name": "Asterless/MoonPtime",
+  "packages": [
+    {
+      "is-main": false,
+      "is-third-party": false,
+      "root-path": "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src",
+      "root": "Asterless/MoonPtime",
+      "rel": "src",
+      "files": {
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src\\ptime.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src\\span.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src\\types.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src\\utils.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {},
+      "test-files": {
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src\\ptime_test.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src\\span_test.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "mbt-md-files": {},
+      "deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\haoyu\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\haoyu\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\haoyu\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\_build\\wasm\\debug\\check\\src\\src.mi",
+      "check-command": [
+        "check",
+        "-error-format",
+        "json",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src\\ptime.mbt",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src\\span.mbt",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src\\types.mbt",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src\\utils.mbt",
+        "-o",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\_build\\wasm\\debug\\check\\src\\src.mi",
+        "-pkg",
+        "Asterless/MoonPtime/src",
+        "-pkg-type",
+        "library",
+        "-std-path",
+        "C:\\Users\\haoyu\\.moon\\lib\\core\\_build\\wasm\\release\\bundle",
+        "-i",
+        "C:\\Users\\haoyu\\.moon\\lib\\core\\_build\\wasm\\release\\bundle\\prelude\\prelude.mi:prelude",
+        "-pkg-sources",
+        "Asterless/MoonPtime/src:D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src",
+        "-target",
+        "wasm",
+        "-workspace-path",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime",
+        "-all-pkgs",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\_build\\wasm\\debug\\check\\all_pkgs.json"
+      ],
+      "wbtest-check-command": null,
+      "test-check-command": [
+        "check",
+        "-error-format",
+        "json",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src\\ptime_test.mbt",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src\\span_test.mbt",
+        "-doctest-only",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src\\ptime.mbt",
+        "-doctest-only",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src\\span.mbt",
+        "-doctest-only",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src\\types.mbt",
+        "-doctest-only",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src\\utils.mbt",
+        "-include-doctests",
+        "-o",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\_build\\wasm\\debug\\check\\src\\src.blackbox_test.mi",
+        "-pkg",
+        "Asterless/MoonPtime/src_blackbox_test",
+        "-pkg-type",
+        "library",
+        "-std-path",
+        "C:\\Users\\haoyu\\.moon\\lib\\core\\_build\\wasm\\release\\bundle",
+        "-i",
+        "C:\\Users\\haoyu\\.moon\\lib\\core\\_build\\wasm\\release\\bundle\\prelude\\prelude.mi:prelude",
+        "-i",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\_build\\wasm\\debug\\check\\src\\src.mi:src",
+        "-pkg-sources",
+        "Asterless/MoonPtime/src_blackbox_test:D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\src",
+        "-target",
+        "wasm",
+        "-blackbox-test",
+        "-workspace-path",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime",
+        "-all-pkgs",
+        "D:\\Users\\haoyu\\Documents\\mooncake\\.moonsage\\workspaces\\MoonPtime\\_build\\wasm\\debug\\check\\all_pkgs.json"
+      ],
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
+    }
+  ],
+  "deps": [],
+  "backend": "wasm",
+  "opt_level": "debug",
+  "source": null
+}

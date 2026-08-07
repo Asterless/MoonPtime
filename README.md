@@ -203,3 +203,31 @@ A: Provides future-proof precision for high-resolution timing, scientific applic
 
 **Q: Is this suitable for embedded systems?**  
 A: Yes, the library has minimal dependencies and efficient representation, making it suitable for resource-constrained environments.
+
+---
+
+## Issues and Open Questions
+
+This section collects problems found during a code review of the current implementation. They are grouped by severity. None of these have been fixed yet — they are open questions for contributors.
+
+### Bugs / Logical Issues
+
+- **`Span::of_ms` negative handling** — for negative inputs, `ps % 1000L` can be negative and the borrowed/carried normalization is asymmetric.
+- **`Ptime::normalize` vs `Span::normalize` are inconsistent** — the two carry/borrow algorithms have different semantics; the same value can normalize to different representations depending on which path it goes through.
+- **`Span::neg` is not normalized** — negation directly flips the sign without calling normalize, which can leave the value in an invalid (denormalized) representation.
+- **`Span::scalar` does not guard against overflow** — Int64 multiplication overflow is unchecked.
+- **`Span::of_float` relies on the imperfect normalize** — negative fractional handling depends on the inconsistent normalization described above.
+
+### Missing Features / API Mismatch
+
+- **RFC 3339 output drops sub-second precision** — `to_rfc3339` only emits second-level precision, contradicting the library's picosecond-precision selling point.
+- **No leap-second handling** — `of_ymd_hms` validates `second` in `0..59` without documenting the leap-second limitation.
+- **Missing `from_rfc3339` parser** — only `to_rfc3339` exists; there is no way to parse an RFC 3339 string back into a `Ptime`.
+- **`mul`/`scalar` naming mismatch** — the README claims a `mul` operation, but the implementation exposes `scalar`.
+- **`Ptime` struct comment is misleading** — the documented `picoseconds` range conflicts with the normalize target.
+
+### Engineering / Maintenance
+
+- **No public normalize / invariant check** — normalize is private, so callers cannot guarantee all instances hold a canonical representation.
+- **Insufficient test coverage** — missing regression tests for negatives, boundary values, and overflow.
+
